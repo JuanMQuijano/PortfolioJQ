@@ -5,17 +5,17 @@ namespace Model;
 class User extends ActiveRecord
 {
     protected static $tabla = "users";
-    protected static $columnasDB = ["id", "correo", "contraseña"];
+    protected static $columnasDB = ["id", "correo", "password"];
 
     public $id;
     public $correo;
-    public $contraseña;
+    public $password;
 
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
         $this->correo = $args['correo'] ?? '';
-        $this->contraseña = $args['contraseña'] ?? null;
+        $this->password = $args['password'] ?? null;
     }
 
     public function validarUser()
@@ -23,7 +23,7 @@ class User extends ActiveRecord
         if (!$this->correo) {
             self::$alertas['error'][] = 'Debes Ingresar Un Correo';
         }
-        if (!$this->contraseña) {
+        if (!$this->password) {
             self::$alertas['error'][] = 'Debes Ingresar Una Contraseña';
         }
 
@@ -32,12 +32,12 @@ class User extends ActiveRecord
 
     public function hashearPassword()
     {
-        $this->contraseña = password_hash($this->contraseña, PASSWORD_BCRYPT);
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
-    public function verificarPassword($contraseña)
+    public function verificarPassword($password)
     {
-        $resultado = password_verify($contraseña, $this->contraseña);
+        $resultado = password_verify($password, $this->password);
 
         return $resultado;
     }

@@ -42,7 +42,7 @@ class AdminController
                 $resultado = User::where('correo', $user->correo);
 
                 if ($resultado) {
-                    $valido = $resultado->verificarPassword($user->contraseña);
+                    $valido = $resultado->verificarPassword($user->password);
 
                     if ($valido) {
                         session_start();
