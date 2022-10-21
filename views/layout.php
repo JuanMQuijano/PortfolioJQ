@@ -35,6 +35,8 @@
     </header>
 
     <?php
+    include_once __DIR__ . '/templates/alertas.php';
+    
     if ($enviado == 1) { ?>
         <div class='alerta'>
             <p>Enviado Correctamente</p>

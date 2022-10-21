@@ -93,7 +93,6 @@
 
 <hr class="hr" />
 
-<?php include_once __DIR__ . '/templates/alertas.php'; ?>
 <section class="contacto" id="contacto">
     <h1>¡PLATIQUEMOS!</h1>
 
