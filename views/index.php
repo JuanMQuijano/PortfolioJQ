@@ -56,38 +56,16 @@
     <h1>PROYECTOS</h1>
 
     <div>
-        <div class="contenedor-proyecto">
-            <img src="/build/img/GitHub-Mark-Light-32px.webp" alt="Imagen Proyecto" />
-            <p>
-                Aplicativo web que permite la comercialización de inmuebles,
-                cuenta con vista de usuario y administrador, donde se podran
-                crear, actualizar o eliminar propiedades a antojo del usuario
-                administrador; Tecnologias involucradas en el desarrollo: HTML,
-                CSS, JAVASCRIPT, PHP Y MYSQL
-            </p>
-        </div>
+        <?php foreach ($projects as $project) { ?>
+            <div class="contenedor-proyecto">
+                <img src="/build/img/<?php echo $project->imagen; ?>" alt="Imagen Proyecto" />
+                <a href="<?php echo $project->enlace; ?>" target="_blank">
+                    <h3><?php echo $project->nombre; ?></h3>
+                </a>
+                <p><?php echo $project->descripcion; ?></p>
 
-        <div class="contenedor-proyecto">
-            <img src="/build/img/GitHub-Mark-Light-32px.webp" alt="Imagen Proyecto" />
-            <p>
-                Aplicativo web que permite la comercialización de inmuebles,
-                cuenta con vista de usuario y administrador, donde se podran
-                crear, actualizar o eliminar propiedades a antojo del usuario
-                administrador; Tecnologias involucradas en el desarrollo: HTML,
-                CSS, JAVASCRIPT, PHP Y MYSQL
-            </p>
-        </div>
-
-        <div class="contenedor-proyecto">
-            <img src="/build/img/GitHub-Mark-Light-32px.webp" alt="Imagen Proyecto" />
-            <p>
-                Aplicativo web que permite la comercialización de inmuebles,
-                cuenta con vista de usuario y administrador, donde se podran
-                crear, actualizar o eliminar propiedades a antojo del usuario
-                administrador; Tecnologias involucradas en el desarrollo: HTML,
-                CSS, JAVASCRIPT, PHP Y MYSQL
-            </p>
-        </div>
+            </div>
+        <?php } ?>
     </div>
 </section>
 

@@ -21,7 +21,9 @@ $router->post('/registerAdmin', [AdminController::class, 'Register']);
 
 $router->get('/admin', [AdminController::class, 'Index']);
 $router->get('/admin/mensaje', [AdminController::class, 'Mensaje']);
-$router->post('/admin/mensaje', [AdminController::class, 'Mensaje']);
 
+$router->get('/admin/proyectos', [AdminController::class, 'ProyectosIndex']);
+$router->get('/admin/proyectos/crear', [AdminController::class, 'ProyectoCrear']);
+$router->post('/admin/proyectos/crear', [AdminController::class, 'ProyectoCrear']);
 
 $router->comprobarRutas();

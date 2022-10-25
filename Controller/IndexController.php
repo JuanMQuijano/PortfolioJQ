@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Model\Project;
 use Model\UserMessage;
 use MVC\Router;
 
@@ -11,6 +12,7 @@ class IndexController
     public static function Index(Router $router)
     {
         $alertas = [];
+        $projects = Project::all();
         $enviado = 0;
         $userMessage = new UserMessage();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,7 +32,8 @@ class IndexController
             'alertas' => $alertas,
             'enviado' => $enviado,
             'admin' => false,
-            'userMessage' => $userMessage
+            'userMessage' => $userMessage,
+            'projects' => $projects
         ]);
     }
 }

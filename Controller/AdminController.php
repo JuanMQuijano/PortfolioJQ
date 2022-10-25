@@ -3,8 +3,10 @@
 namespace Controller;
 
 use Model\User;
-use Model\UserMessage;
 use MVC\Router;
+use Model\Project;
+use Model\UserMessage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController
 {
@@ -130,12 +132,74 @@ class AdminController
 
         $id = $_GET['id'];
         $userMessage = UserMessage::find($id);
-        
+
         $router->render('/admin/mensaje', [
             'alertas' => [],
             'enviado' => '',
             'admin' => true,
             'userMessage' => $userMessage
+        ]);
+    }
+
+    public static function ProyectosIndex(Router $router)
+    {
+        isAuth();
+
+        $projects = Project::all();
+
+        $router->render('/admin/proyectos/index', [
+            'alertas' => [],
+            'admin' => true,
+            'enviado' => '',
+            'projects' => $projects
+
+        ]);
+    }
+
+    public static function ProyectoCrear(Router $router)
+    {
+        isAuth();
+
+        $alertas = [];
+        $project = new Project();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $project = new Project($_POST);
+            //Generamos un nombre único para la imagen
+            $nombreImagen = md5(uniqid(rand(), true)) . ".webp";
+
+            //Setear la imagen
+            if ($_FILES['imagen']['tmp_name']) {
+                //Realiza un resize a la imagen con intervention
+                $imagen = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 600);
+                $project->setImagen($nombreImagen);
+            }
+
+            $alertas = $project->validar();
+
+            if (empty($alertas)) {
+                //Si una carpeta existe o no
+                if (!is_dir(CARPETA_IMAGENES)) {
+                    //Si no existe, crearla
+                    mkdir(CARPETA_IMAGENES);
+                }
+
+                //Guarda la imagen en el servidor
+                $imagen->save(CARPETA_IMAGENES . $nombreImagen);
+
+                $resultado = $project->guardar();
+
+                if ($resultado) {
+                    header('Location: /admin/proyectos');
+                }
+            }
+        }
+
+        $alertas = Project::getAlertas();
+        $router->render('/admin/proyectos/crear', [
+            'alertas' => $alertas,
+            'admin' => true,
+            'enviado' => ''
         ]);
     }
 }

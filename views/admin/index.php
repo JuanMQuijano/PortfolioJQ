@@ -1,4 +1,8 @@
 <section class="admin">
+    <a href="/admin/proyectos">
+        <h1>Proyectos</h1>
+    </a>
+    <hr class="hr">    
     <h1>Mensajes</h1>
 
     <table>
