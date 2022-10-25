@@ -53,7 +53,7 @@
 <hr class="hr" />
 
 <section class="proyectos" id="proyectos">
-    <h1>PROYECTOS</h1>
+    <h1>PROYECTOS 💼</h1>
 
     <div>
         <?php foreach ($projects as $project) { ?>
