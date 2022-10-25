@@ -19,7 +19,9 @@ $router->get('/registerAdmin', [AdminController::class, 'Register']);
 $router->post('/registerAdmin', [AdminController::class, 'Register']);
 
 
-
 $router->get('/admin', [AdminController::class, 'Index']);
+$router->get('/admin/mensaje', [AdminController::class, 'Mensaje']);
+$router->post('/admin/mensaje', [AdminController::class, 'Mensaje']);
+
 
 $router->comprobarRutas();

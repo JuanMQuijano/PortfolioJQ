@@ -12,10 +12,13 @@ class AdminController
     {
         isAuth();
 
+        $alertas = [];
+
         $userMessages = UserMessage::all();
 
         $router->render('/admin/index', [
             'enviado' => '',
+            'alertas' => $alertas,
             'admin' => true,
             'userMessages' => $userMessages
         ]);
@@ -119,5 +122,20 @@ class AdminController
         $_SESSION = [];
 
         header('Location: /');
+    }
+
+    public static function Mensaje(Router $router)
+    {
+        isAuth();
+
+        $id = $_GET['id'];
+        $userMessage = UserMessage::find($id);
+        
+        $router->render('/admin/mensaje', [
+            'alertas' => [],
+            'enviado' => '',
+            'admin' => true,
+            'userMessage' => $userMessage
+        ]);
     }
 }

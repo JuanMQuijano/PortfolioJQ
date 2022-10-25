@@ -3,24 +3,22 @@
 
     <table>
         <tr>
-            <th>ID</th>
             <th>Nombre Completo</th>
             <th>Contacto</th>
-            <th>E-mail</th>
-            <th>Teléfono</th>
             <th>Fecha</th>
+            <th>Acciones</th>
         </tr>
 
         <?php
         foreach ($userMessages as $userMessage) {
         ?>
             <tr>
-                <td><a href=""><?php echo $userMessage->id; ?></a></td>
                 <td><?php echo $userMessage->nombre . " " . $userMessage->apellido; ?></td>
                 <td><?php echo $userMessage->contacto; ?></td>
-                <td><?php echo $userMessage->email; ?></td>
-                <td><?php echo $userMessage->telefono; ?></td>
                 <td><?php echo $userMessage->fecha; ?></td>
+                <td>
+                    <a href="/admin/mensaje?id=<?php echo $userMessage->id; ?>" class="boton">Ver</a>
+                </td>
             </tr>
         <?php } ?>
     </table>
