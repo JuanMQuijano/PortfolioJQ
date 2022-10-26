@@ -131,7 +131,7 @@ class AdminController
         isAuth();
 
         $id = $_GET['id'];
-        debuguear($id);
+      
         $userMessage = UserMessage::find($id);
 
         $router->render('/admin/mensaje', [
