@@ -1,5 +1,4 @@
-Options -MultiViews
-
+Options All -Indexes
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [QSA,L]
+
+RewriteRule ^([-a-zA-Z0-9/_]+)$ index.php?enlace=$1
