@@ -20,7 +20,9 @@ class Router
     public function comprobarRutas()
     {
         $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' :  $_SERVER['REQUEST_URI'];
-        $method = $_SERVER['REQUEST_METHOD'];        
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        debuguear($_SERVER);
 
         if ($method === 'GET') {
             $fn = $this->getRoutes[$currentUrl] ?? null;
@@ -28,7 +30,6 @@ class Router
             $fn = $this->postRoutes[$currentUrl] ?? null;
         }
 
-        debuguear($fn);
 
         if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
