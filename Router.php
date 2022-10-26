@@ -28,8 +28,7 @@ class Router
 
         $isAdmin = $_SESSION['admin'] ?? null;
 
-        // $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
-        $currentUrl = $_SERVER['REQUEST_URI'] ?? '/';
+        $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];        
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {
