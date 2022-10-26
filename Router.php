@@ -19,17 +19,7 @@ class Router
 
     public function comprobarRutas()
     {
-        // Proteger Rutas...
-        session_start();
-
-        // Arreglo de rutas protegidas...
-        // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
-        // $rutas_protegidas = ['/admin'];
-
-        $isAdmin = $_SESSION['admin'] ?? null;
-
-        $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
-        // $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' :  $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {
@@ -37,11 +27,6 @@ class Router
         } else {
             $fn = $this->postRoutes[$currentUrl] ?? null;
         }
-
-        //Proteger las rutas
-        // if (in_array($currentUrl, $rutas_protegidas) && !$isAdmin) { //Si la urlActual está en el arreglo y el usuario no esta autenticado
-        //     header('Location: /');
-        // }
 
         if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera

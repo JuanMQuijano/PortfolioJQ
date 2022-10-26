@@ -1,6 +1,5 @@
 <?php
-
-include_once '../includes/app.php';
+require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
 use Controller\AdminController;
